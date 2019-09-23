@@ -5,8 +5,8 @@ include_path = ./Inc
 CC = gcc
 
 
-app.exe : main.o LCD.o DIO.o Nasser_MinaMedhat_Yakkob_Rafat.o
-	$(CC) $^ -o $@
+app.exe : main.o LCD.o DIO.o
+	$(CC) main.o LCD.o DIO.o Nasser_MinaMedhat_Yakkob_Rafat.o -o $@
 
 
 
