@@ -4,7 +4,8 @@ vpath %.h ./Inc
 include_path = ./Inc
 CC = gcc
 LINK_TARGET = app.exe
-OBJECTS = main.o LCD.o DIO.o Nasser_MinaMedhat_Yakkob_Rafat.o
+SOURCES = $(wildcard *.c)
+OBJECTS = $(src:.c=.o)
 
 all : $(LINK_TARGET)
 
