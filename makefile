@@ -1,13 +1,17 @@
 
 vpath %.c ./Src
 vpath %.h ./Inc
+vpath %.d ./Dependencies
 include_path = ./Inc
 source_path = ./Src
+dep_path = ./Dependencies
 CC = gcc
 LINK_TARGET = app.exe
 SOURCES = $(wildcard $(source_path)/*.c)
 OBJECTS = $(SOURCES:.c=.o)
-CLEAN_TARGET = $(LINK_TARGET) $(OBJECTS)
+dep = $(OBJECTS:.o=.d)
+LDFLAGS = -lGL -lglut -lpng -lz -lm
+CLEAN_TARGET = $(LINK_TARGET) $(OBJECTS) $(dep)
 
 all : $(LINK_TARGET)
 
@@ -17,10 +21,21 @@ app.exe : $(OBJECTS)
 
 
 
+%.d : %.c
+	@$(CPP) $(CFLAGS) $< -MM -MT $(@:.d=.o) $(dep_path) >$@
+
+
 %.o : %.c
 	$(CC) -c -I$(include_path) $< -o $@
 
 
 
-Clear : 
+clear : 
 	rm $(CLEAN_TARGET)
+
+
+clear_dep :
+	rm $(dep)
+
+
+include $(dep)
