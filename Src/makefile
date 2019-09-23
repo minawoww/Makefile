@@ -1,6 +1,6 @@
 
 vpath %.c ./Src
-include_path = ./Inc
+include_path = D:\embedded systems\Sprints\Makefile Session\challenge\Makefile\Inc
 CC = gcc
 
 
