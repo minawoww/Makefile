@@ -5,7 +5,7 @@ include_path = ./Inc
 CC = gcc
 LINK_TARGET = app.exe
 SOURCES = $(wildcard *.c)
-OBJECTS = $(SOURCES:.c=.o)
+OBJECTS = main.o LCD.o DIO.o Nasser_MinaMedhat_Yakkob_Rafat.o
 
 all : $(LINK_TARGET)
 
