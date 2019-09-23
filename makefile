@@ -6,7 +6,7 @@ CC = gcc
 OBJECTS = main.o LCD.o DIO.o Nasser_MinaMedhat_Yakkob_Rafat.o
 
 
-app.exe : main.o LCD.o DIO.o Nasser_MinaMedhat_Yakkob_Rafat.o
+app.exe : $(OBJECTS)
 	$(CC) $(OBJECTS) -o $@
 
 
