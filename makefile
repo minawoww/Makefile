@@ -7,13 +7,13 @@ source_path = ./Src
 dep_path = Dependencies/
 CC = gcc
 LINK_TARGET = app.exe
-SOURCES = $(wildcard $(source_path)/*.c)
+SOURCES = $(subst $(source_path)/,,$(wildcard $(source_path)/*.c))
 OBJECTS = $(SOURCES:.c=.o)
-#dep = $(OBJECTS:.o=.d)
-CLEAN_TARGET = $(LINK_TARGET) $(OBJECTS) $(dep)
+dep = $(SOURCES:.c=.d)
+CLEAN_TARGET = $(LINK_TARGET) $(OBJECTS) $(deps)
 
 
-dep = $(addprefix $(dep_path)/, $(patsubst %.c, %.d, $(wildcard *.c)))
+deps = $(addprefix $(dep_path)/, $(dep))
 #--include-dir=$(dep_path)
 -include $(dep)
 
@@ -24,12 +24,11 @@ app.exe : $(OBJECTS)
 	$(CC) $^ Nasser_MinaMedhat_Yakkob_Rafat.o -o $@
 
 
-%.d : %.c
-	@$(CPP) $< -MM -MT $(@:.d=.o) $(dep_path) -o $@
 
 
 %.o : %.c
 	$(CC) -c -I$(include_path) $< -o $@
+	@$(CPP) $< -MM -I$(include_path) $< > $(dep_path)\$*.d
 
 
 
@@ -38,5 +37,5 @@ clear :
 
 
 clear_dep :
-	rm $(dep)
+	rm $(deps)
 
