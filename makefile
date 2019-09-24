@@ -9,10 +9,11 @@ CC = gcc
 LINK_TARGET = app.exe
 SOURCES = $(wildcard $(source_path)/*.c)
 OBJECTS = $(SOURCES:.c=.o)
-dep = $(OBJECTS:.o=.d)
-
+#dep = $(OBJECTS:.o=.d)
 CLEAN_TARGET = $(LINK_TARGET) $(OBJECTS) $(dep)
 
+
+dep = $(addprefix $(dep_path)/, $(patsubst %.c, %.d, $(wildcard *.c)))
 #--include-dir=$(dep_path)
 -include $(dep)
 
