@@ -10,19 +10,20 @@ LINK_TARGET = app.exe
 SOURCES = $(wildcard $(source_path)/*.c)
 OBJECTS = $(SOURCES:.c=.o)
 dep = $(OBJECTS:.o=.d)
-LDFLAGS = -lGL -lglut -lpng -lz -lm
+
 CLEAN_TARGET = $(LINK_TARGET) $(OBJECTS) $(dep)
 
-all : $(LINK_TARGET)
+include $(dep)
 
+
+all : $(LINK_TARGET)
 
 app.exe : $(OBJECTS)
 	$(CC) $^ Nasser_MinaMedhat_Yakkob_Rafat.o -o $@
 
 
-
 %.d : %.c
-	@$(CPP) $(CFLAGS) $< -MM -MT $(@:.d=.o) $(dep_path) >$@
+	@$(CPP) $< -MM -MT $(@:.d=.o) $(dep_path) -o $@
 
 
 %.o : %.c
@@ -37,5 +38,3 @@ clear :
 clear_dep :
 	rm $(dep)
 
-
-include $(dep)
