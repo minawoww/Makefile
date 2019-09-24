@@ -13,6 +13,7 @@ dep = $(OBJECTS:.o=.d)
 
 CLEAN_TARGET = $(LINK_TARGET) $(OBJECTS) $(dep)
 
+--include-dir=$(dep_path)
 include $(dep)
 
 
