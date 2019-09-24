@@ -15,7 +15,7 @@ CLEAN_TARGET = $(LINK_TARGET) $(OBJECTS) $(deps)
 
 deps = $(addprefix $(dep_path)/, $(dep))
 #--include-dir=$(dep_path)
--include $(dep)
+-include $(deps)
 
 
 all : $(LINK_TARGET)
