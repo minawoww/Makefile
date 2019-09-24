@@ -1,10 +1,10 @@
 
 vpath %.c ./Src
 vpath %.h ./Inc
-vpath %.d ./Dependencies
+#vpath %.d Dependencies/
 include_path = ./Inc
 source_path = ./Src
-dep_path = ./Dependencies
+dep_path = Dependencies/
 CC = gcc
 LINK_TARGET = app.exe
 SOURCES = $(wildcard $(source_path)/*.c)
@@ -13,8 +13,8 @@ dep = $(OBJECTS:.o=.d)
 
 CLEAN_TARGET = $(LINK_TARGET) $(OBJECTS) $(dep)
 
---include-dir=$(dep_path)
-include $(dep)
+#--include-dir=$(dep_path)
+-include $(dep)
 
 
 all : $(LINK_TARGET)
